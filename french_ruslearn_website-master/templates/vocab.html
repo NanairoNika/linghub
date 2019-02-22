@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="/static/stylesheet.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Les matériaux et les tests</title>
+</head>
+<body>
+{{ uemail }}
+<ul class="menu-main">
+  <li><a href="{{ profile_refer }}">Mon compte</a></li>
+  {% if vocab_category == 'Le Substantif' %}
+  <li><a href="{{ noun_voc }}" class="current">Le Substantif</a></li>
+  {% else %}
+  <li><a href="{{ noun_voc }}">Le Substantif</a></li>
+  {% endif %}
+  {% if vocab_category == 'Le Verbe' %}
+  <li><a href="{{ verb_voc }}" class="current">Le Verbe</a></li>
+  {% else %}
+  <li><a href="{{ verb_voc }}">Le Verbe</a></li>
+  {% endif %}
+  {% if vocab_category == 'L\'Adverbe' %}
+  <li><a href="{{ adv_voc }}" class="current">L'Adverbe</a></li>
+  {% else %}
+  <li><a href="{{ adv_voc }}">L'Adverbe</a></li>
+  {% endif %}
+  <li><a href="{{ url_for_security('logout') }}">Déconnexion</a></li>
+</ul>
+<div class="long-tests" align="center">
+<h1>{{ vocab_category }}</h1>
+    <table>
+        <tbody>
+        <tr>
+            <th>traduire en français</th>
+            <td><a href="{{ 'bigtest_'+ ps}}">drill long</a></td>
+            <td><a href="{{ 'bigquiz_'+ ps}}">tests d'évaluation long</a></td>
+        </tr>
+        <tr>
+            <th>traduire en russe</th>
+            <td><a href="{{ 'bigtestb_'+ ps }}">drill long</a></td>
+            <td><a href="{{ 'bigtestb_'+ ps }}">test d'évaluation long</a></td>
+        </tr>
+        {% if vocab_category == 'Le Substantif' %}
+        <tr>
+            <th>génitif pluriel</th>
+            <td><a href="{{ 'biggenpl'}}">drill long</a></td>
+            <td><a href="{{ 'biggenpl'}}">test d'évaluation long</a></td>
+        </tr>
+        <tr>
+        {% elif vocab_category == 'Le Verbe' %}
+            <th>conjugation présent</th>
+            <td><a href="{{ 'bigconj_v'}}">drill long</a></td>
+            <td><a href="{{ 'bigqconj_v'}}">test d'évaluation long</a></td>
+        </tr>
+        <tr>
+            <th>conjugation présent type I</th>
+            <td><a href="{{ 'bigconj_v1'}}">drill long</a></td>
+            <td><a href="{{ 'bigqconj_v1'}}">test d'évaluation long</a></td>
+        </tr>
+        <tr>
+            <th>conjugation présent type II</th>
+            <td><a href="{{ 'bigconj_v2'}}">drill long</a></td>
+            <td><a href="{{ 'bigqconj_v2'}}">test d'évaluation long</a></td>
+        </tr>
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+<div class="main-tests" align="center">
+    {% for cat in mama %}
+        <h2>{{ cats[cat] }}</h2>
+        <table>
+        <tbody>
+        <tr>
+            <th>traduire en français</th>
+            <td><a href="{{ 'test_'+cat }}">drill</a> </td>
+            <td><a href="{{ 'quiz_'+cat }}">test d'évaluation</a> </td>
+        </tr>
+        <tr>
+            <th>traduire en russe</th>
+            <td><a href="{{ 'testb_'+cat }}">drill</a> </td>
+            <td><a href="{{ 'quizb_'+cat }}">test d'évaluation</a> </td>
+        </tr>
+        <tr>
+            {% if vocab_category == 'Le Substantif' and cat != 'sg_tantum' %}
+            <th>génitif pluriel</th>
+            <td><a href="{{ 'genpl_' + cat }}">drill</a> </td>
+            <td><a href="{{ 'qgenpl_' + cat }}">test d'évaluation</a> </td>
+            {% elif vocab_category == 'Le Verbe' %}
+            <th>conjugation présent</th>
+            <td><a href="{{ 'conj_' + cat }}">drill</a> </td>
+            <td><a href="{{ 'qconj_' + cat }}">test d'évaluation</a> </td>
+            {% endif %}
+        </tr>
+    </table>
+        <h3> vocabulaire </h3>
+    <div class="vocabulary">
+        <table>
+            <thead>
+              <tr>
+                <th scope="col">en russe</th>
+                <th scope="col">en français</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for el in voc[cat] %}
+              <tr>
+                <td>{{ el[0] }}</td>
+                <td>{{ el[1] }}</td>
+              </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

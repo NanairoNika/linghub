@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="/static/stylesheet.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>succès</title>
+</head>
+<body>
+<div class="success">
+{% if a == 0 %}
+<form action="">
+<h2>Oui, c'est vrai!</h2>
+<input type="submit" class="btn btn-primary" value="ok">
+{% else %}
+    <form action="{{ profile_refer }}">
+    <h2>C'est tout</h2>
+    <input type="submit" class="btn btn-primary" value="ok">
+{% endif %}
+</form>
+</div>
+</body>
+</html>

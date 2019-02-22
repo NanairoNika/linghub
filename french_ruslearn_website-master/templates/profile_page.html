@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="/static/stylesheet.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Mon compte</title>
+</head>
+<body>
+{{ uemail }}
+<ul class="menu-main">
+  <li><a href="" class="current">Mon compte</a></li>
+  <li><a href="{{ noun_voc }}">Le Substantif</a></li>
+  <li><a href="{{ verb_voc }}">Le Verbe</a></li>
+  <li><a href="{{ adv_voc }}">L'Adverbe</a></li>
+  <li><a href="{{ url_for_security('logout') }}">Déconnexion</a></li>
+</ul>
+</body>
+</html>
